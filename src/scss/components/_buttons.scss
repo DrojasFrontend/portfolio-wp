@@ -1,0 +1,24 @@
+.btn {
+  display: inline-block;
+  padding: 1rem 2.5rem 0.8rem 2.5rem;
+  color: $color__text-white;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid transparent;
+  font-size: size(14);
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  background-color: transparent;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary {
+  background: $color__background-primary;
+}

@@ -1,0 +1,50 @@
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+  font-family: $font__main;
+  color: $color__text-main;
+  letter-spacing: $font__letter-spacing;
+  font-size: size(16);
+  line-height: $font__line-height-body;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.paragraph {
+  margin: 0;
+}
+
+.h1 {
+  font-size: size(36);
+}
+
+.h2 {
+  font-size: size(30);
+}
+
+.h3 {
+  font-size: size(24);
+}
+
+.h4 {
+  font-size: size(20);
+}
+
+.h5 {
+  font-size: size(18);
+}
+
+.h6 {
+  font-size: size(16);
+}
+
+.paragraph {
+  font-size: size(16);
+}
