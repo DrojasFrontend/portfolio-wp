@@ -16,8 +16,12 @@
 // Global
 @import "./global";
 
+// Grid
+@import "./layout/grid";
+
 // Partials
 @import "./partials/header";
 
 // Sections
 @import "./sections/banner";
+@import "./sections/statistics";

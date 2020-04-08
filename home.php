@@ -10,6 +10,10 @@ get_header();
 
 <?php wp_mybanner_banner(); ?>
 
+<div class="row">
+  <?php wp_mystatistics_statistics(); ?>
+</div>
+
 
 <h1 class="h1"> Tag </h1>
 <hr class="line-small">

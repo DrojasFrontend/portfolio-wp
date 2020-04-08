@@ -1,4 +1,6 @@
 $color__text-white: #fff;
+
+$color__background-body: rgba(248, 248, 248, 0.07);
 $color__background-primary: linear-gradient(
     to right,
     rgb(19, 69, 230) 0%,
@@ -13,8 +15,9 @@ $color__background-hr: linear-gradient(
     rgb(19, 69, 230) 100%
   )
   0% 0% / 200%;
-/*$color__background-body: #fff;
-$color__background-screen: #f1f1f1;
+$color__background-gray: #f8faff;
+$color__background-shadow: rgba(0, 0, 0, 0.05);
+/*$color__background-screen: #f1f1f1;
 $color__background-hr: #ccc;z
 $color__background-button: #e6e6e6;
 $color__background-pre: #eee;

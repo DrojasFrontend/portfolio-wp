@@ -19,6 +19,9 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 
 		add_theme_support( 'post-thumbnails' );
 
+		// Remove p tags from category description
+		remove_filter( 'the_content', 'wpautop' );
+
 		// My Menus
 		function register_my_menus() {
 			register_nav_menus(
@@ -68,7 +71,7 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 		// Function to show home page banner using query of banner post type
 		function wp_mybanner_banner() {
 			$query = new WP_Query( array(
-					'post_type' => 'banner',
+				'post_type' => 'banner',
 			));
 
 			if ( $query->have_posts() ) { ?>
@@ -89,6 +92,62 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 															
 						</section>
 				<?php endwhile; ?>
+			<?php }
+			wp_reset_postdata();
+		}
+
+		// Statistics
+		// register a custom post type called 'statistics'
+		function wpmystatistics_create_post_type() {
+			$labels = array(
+					'name' => __( 'Statistics' ),
+					'singular_name' => __( 'statistics' ),
+					'add_new' => __( 'New statistics' ),
+					'add_new_item' => __( 'Add New statistics' ),
+					'edit_item' => __( 'Edit bastatisticsnner' ),
+					'new_item' => __( 'New statistics' ),
+					'view_item' => __( 'View statistics' ),
+					'search_items' => __( 'Search statistics' ),
+					'not_found' =>  __( 'No statistics Found' ),
+					'not_found_in_trash' => __( 'No statistics found in Trash' ),
+			);
+			$args = array(
+					'labels' => $labels,
+					'menu_icon' => 'dashicons-format-image',
+					'has_archive' => true,
+					'public' => true,
+					'hierarchical' => false,
+					'supports' => array(
+							'title',
+							'editor',
+							'excerpt',
+							'custom-fields',
+							'thumbnail',
+							'page-attributes'
+					),
+					'taxonomies' => array( 'post_tag', 'category'),
+			);
+			register_post_type( 'statistics', $args );
+		}
+		add_action( 'init', 'wpmystatistics_create_post_type' );
+
+		// Function to show home page banner using query of banner post type
+		function wp_mystatistics_statistics() {
+			$query = new WP_Query( array(
+				'post_type' => 'statistics',
+			));
+
+			if ( $query->have_posts() ) { ?>
+				<section id="post-<?php the_ID(); ?>" <?php post_class( 'statistics' ); ?>>
+					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+						<div class="statistics__item">
+							<div class="statistics__item-counter">
+								<h3 class="statistics__item-title"><?php the_title(); ?></h3>
+								<p class="statistics__item-paragraph"><?php the_content(); ?></p>
+							</div>
+						</div>
+					<?php endwhile; ?>
+				</section>
 			<?php }
 			wp_reset_postdata();
 		}
