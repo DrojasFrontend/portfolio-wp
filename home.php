@@ -8,6 +8,9 @@
 get_header();
 ?>
 
+<?php wp_mybanner_banner(); ?>
+
+
 <h1 class="h1"> Tag </h1>
 <hr class="line-small">
 <h1 class="h1">
@@ -43,3 +46,5 @@ Frontend
 <a href="#" class="btn btn-primary">
   Buttons
 </a>
+
+<?php get_footer(); ?>

@@ -19,10 +19,79 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 
 		add_theme_support( 'post-thumbnails' );
 
-		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'portfolio-wordpress' ),
-		) );
+		// My Menus
+		function register_my_menus() {
+			register_nav_menus(
+				array(
+					'header-menu' => __( 'Header Menu' ),
+					//'extra-menu' => __( 'Extra Menu' )
+				)
+			);
+		}
+		add_action( 'init', 'register_my_menus' );
+
+		// Banner
+		// register a custom post type called 'banner'
+		function wpmybanner_create_post_type() {
+			$labels = array(
+					'name' => __( 'Banners' ),
+					'singular_name' => __( 'banner' ),
+					'add_new' => __( 'New banner' ),
+					'add_new_item' => __( 'Add New banner' ),
+					'edit_item' => __( 'Edit banner' ),
+					'new_item' => __( 'New banner' ),
+					'view_item' => __( 'View banner' ),
+					'search_items' => __( 'Search banners' ),
+					'not_found' =>  __( 'No banners Found' ),
+					'not_found_in_trash' => __( 'No banners found in Trash' ),
+			);
+			$args = array(
+					'labels' => $labels,
+					'menu_icon' => 'dashicons-format-image',
+					'has_archive' => true,
+					'public' => true,
+					'hierarchical' => false,
+					'supports' => array(
+							'title',
+							'editor',
+							'excerpt',
+							'custom-fields',
+							'thumbnail',
+							'page-attributes'
+					),
+					'taxonomies' => array( 'post_tag', 'category'),
+			);
+			register_post_type( 'banner', $args );
+		}
+		add_action( 'init', 'wpmybanner_create_post_type' );
+
+		// Function to show home page banner using query of banner post type
+		function wp_mybanner_banner() {
+			$query = new WP_Query( array(
+					'post_type' => 'banner',
+			));
+
+			if ( $query->have_posts() ) { ?>
+				<?php while ( $query->have_posts() ) : $query->the_post(); 
+					$upload_dir = wp_upload_dir();
+				?>
+					<?php $backgroundImg = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' ); ?>
+						<section id="post-<?php the_ID(); ?>" <?php post_class( 'banner' ); ?> style="background: url('<?php echo $backgroundImg[0]; ?>') no-repeat center;">
+							<div class="banner__content">
+								<?php the_content(); ?>
+								<div class="banner__social">
+									<a href="#"><img src="<?php echo $upload_dir['url'] . '/icon-linkedin.svg' ?>"></a>
+									<a href="#"><img src="<?php echo $upload_dir['url'] . '/icon-facebook.svg' ?>"></a>
+									<a href="#"><img src="<?php echo $upload_dir['url'] . '/icon-whatsapp.svg' ?>"></a>
+								</div>
+								<a href="" class="btn btn-primary">See my work</a>
+							</div>
+															
+						</section>
+				<?php endwhile; ?>
+			<?php }
+			wp_reset_postdata();
+		}
 
 		add_theme_support( 'html5', array(
 			'search-form',
@@ -126,4 +195,3 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
