@@ -62,8 +62,6 @@ $rem-px-only: false !default;
   @return if(length($result) == 1, nth($result, 1), $result);
 }
 
-
-
 @mixin rem($properties, $values...) {
   @if type-of($properties) == "map" {
     @each $property in map-keys($properties) {
@@ -80,3 +78,4 @@ $rem-px-only: false !default;
     }
   }
 }
+

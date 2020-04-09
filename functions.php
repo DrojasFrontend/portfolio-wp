@@ -21,6 +21,8 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 
 		// Remove p tags from category description
 		remove_filter( 'the_content', 'wpautop' );
+		remove_filter( 'the_excerpt', 'wpautop' );
+
 
 		// My Menus
 		function register_my_menus() {
@@ -139,18 +141,59 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 
 			if ( $query->have_posts() ) { ?>
 				<section id="post-<?php the_ID(); ?>" <?php post_class( 'statistics' ); ?>>
-					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
-						<div class="statistics__item">
-							<div class="statistics__item-counter">
-								<h3 class="statistics__item-title"><?php the_title(); ?></h3>
-								<p class="statistics__item-paragraph"><?php the_content(); ?></p>
-							</div>
+					<div class="container">
+						<div class="row">
+							<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+								<div class="col-3 statistics__item">
+									<div class="statistics__item-counter">
+										<h3 class="h3"><?php the_title(); ?></h3>
+										<p class="paragraph"><?php the_content(); ?></p>
+									</div>
+								</div>
+							<?php endwhile; ?>
 						</div>
-					<?php endwhile; ?>
+					</div>
 				</section>
 			<?php }
 			wp_reset_postdata();
 		}
+
+		// About ME
+		function show_category_posts( $atts ){
+			extract(shortcode_atts(array('cat'=> ''), $atts));
+			query_posts('cat='.$cat.'&orderby;=date&order;=ASC&posts;_per_page=-1');
+			if ( have_posts() ) :
+				while ( have_posts() ) : the_post(); $upload_dir = wp_upload_dir(); ?>
+					<section id="post-<?php the_ID(); ?>" <?php post_class( 'about' ); ?>>
+						<div class="container">
+							<div class="row">
+								<div class="col-6">
+									<figure>
+										<?php the_post_thumbnail(); ?>
+									</figure>				
+								</div>
+								<div class="col-6">
+									<div class="about__content">
+										<h2 class="h2"> <?php the_title(); ?> </h2>
+										<p class="paragraph"> <?php the_excerpt(); ?> </p>
+										<p> <?php the_content(); ?> </p>
+
+										<a href="#" class="about__link-download">
+											<?php $iconDownload = get_post_meta(get_the_ID(), 'Icon Download', true) ?>
+											<img src="<?php echo $upload_dir['url'] . '/' . $iconDownload ?>">
+										</a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</section>
+				<?php endwhile;
+			endif;
+			wp_reset_query();
+		}
+		
+		add_shortcode('show_cat', 'show_category_posts');
 
 		add_theme_support( 'html5', array(
 			'search-form',

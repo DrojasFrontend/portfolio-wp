@@ -16,6 +16,13 @@ $color__background-hr: linear-gradient(
   )
   0% 0% / 200%;
 $color__background-gray: #f8faff;
+$color__background-hr: linear-gradient(
+  to right,
+  rgb(19, 69, 230) 0%,
+  rgb(237, 35, 159) 51%,
+  rgb(19, 69, 230) 100%
+)
+0% 0% / 200%;
 $color__background-shadow: rgba(0, 0, 0, 0.05);
 /*$color__background-screen: #f1f1f1;
 $color__background-hr: #ccc;z

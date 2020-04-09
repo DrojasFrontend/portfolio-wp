@@ -10,9 +10,11 @@ get_header();
 
 <?php wp_mybanner_banner(); ?>
 
-<div class="row">
-  <?php wp_mystatistics_statistics(); ?>
-</div>
+<?php wp_mystatistics_statistics(); ?>
+
+<?php echo do_shortcode( '[show_cat cat="about-me"]'); ?>
+
+
 
 
 <h1 class="h1"> Tag </h1>

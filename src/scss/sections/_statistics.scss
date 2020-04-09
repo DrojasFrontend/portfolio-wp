@@ -1,31 +1,22 @@
 .statistics {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin: 3rem 0;
+  @include rem(margin, 90px 0);
   &__item {
-    -ms-flex: 0 0 25%;
-    flex: 0 0 25%;
-    max-width: 25%;
-    @include rem(margin, 0 15px 0 0); 
     
+    @include rem(margin, 0 25px 0 0);
+
     &-counter {
-      padding: 2rem 0.75rem;
+      @include rem(padding, 30px 15px);
       text-align: center;
       background: $color__background-gray;
       @include box-shadow;
     }
-    &-title {
+    .h3 {
       @include rem(margin-bottom, 15px);
       font-size: size(25);
       font-weight: bold;
       background: $color__background-primary;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-    }
-    &-paragraph {
-
     }
   }
 }
