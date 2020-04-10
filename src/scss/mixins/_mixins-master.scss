@@ -4,13 +4,39 @@ $base-size: 16;
   @return ($target / $context) * 1rem;
 }
 
+// Title Width
+@mixin title {
+  width: 100%;
+  max-width: 360px;
+  @include rem(margin-bottom, 25px);
+  @include rem(padding, 15px 15px 15px 0);
+  text-transform: uppercase;
+  h5 {
+    @include rem(margin-bottom, 16px);
+  }
+}
+
+// Spaces
+@mixin space {
+  @include rem(padding-top, 90px);
+}
+
 // Shadow items
 @mixin box-shadow {
   box-shadow: 0 2px 20px 0 $color__background-shadow;
-  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out, opacity 0.2s ease-out;
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out,
+    opacity 0.2s ease-out, color 0.3s ease-out, background-color 0.7s ease-out;
   transition-delay: 0.1s;
   border-radius: 4px;
   transform: translateZ(0);
+}
+
+// Hover
+@mixin hover {
+  color: $color__text-white;
+  background-color: $color__background-hover;
+  box-shadow: $color__background-shadow_hover;
+  transform: translate(0, -4px);
 }
 
 // Margin and Padding
@@ -21,8 +47,8 @@ $rem-px-only: false !default;
 @function rem-separator($list, $separator: false) {
   @if $separator == "comma" or $separator == "space" {
     @return append($list, null, $separator);
-  } 
-  
+  }
+
   @if function-exists("list-separator") == true {
     @return list-separator($list);
   }
@@ -43,11 +69,18 @@ $rem-px-only: false !default;
 @function rem-convert($to, $values...) {
   $result: ();
   $separator: rem-separator($values);
-  
+
   @each $value in $values {
     @if type-of($value) == "number" and unit($value) == "rem" and $to == "px" {
       $result: append($result, $value / 1rem * $rem-baseline, $separator);
-    } @else if type-of($value) == "number" and unit($value) == "px" and $to == "rem" {
+    } @else if
+      type-of($value) ==
+      "number" and
+      unit($value) ==
+      "px" and
+      $to ==
+      "rem"
+    {
       $result: append($result, $value / $rem-baseline * 1rem, $separator);
     } @else if type-of($value) == "list" {
       $value-separator: rem-separator($value);
@@ -78,4 +111,3 @@ $rem-px-only: false !default;
     }
   }
 }
-

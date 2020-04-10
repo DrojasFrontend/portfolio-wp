@@ -1,14 +1,5 @@
 .about {
-  @include rem(margin-bottom, 90px);
-  .h2 {
-    font-size: size(45);
-    @include rem(margin-bottom, 16px);
-  }
-  .paragraph {
-    @include rem(margin-bottom, 20px);
-    font-size: size(25);
-    text-transform: uppercase;
-  }
+  @include space;
   &__content {
     width: 100%;
     max-width: 550px;

@@ -14,7 +14,9 @@ get_header();
 
 <?php echo do_shortcode( '[show_cat cat="about-me"]'); ?>
 
+<?php wp_myservice_service(); ?>
 
+<?php wp_mytestimonial_testimonial(); ?>
 
 
 <h1 class="h1"> Tag </h1>

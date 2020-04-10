@@ -1,4 +1,4 @@
-// slider.js
+// Banner.js
 import $ from 'jquery';
 
 $(window).scroll(function() {

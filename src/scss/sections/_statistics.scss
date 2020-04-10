@@ -1,5 +1,5 @@
 .statistics {
-  @include rem(margin, 90px 0);
+  @include space;
   &__item {
     
     @include rem(margin, 0 25px 0 0);

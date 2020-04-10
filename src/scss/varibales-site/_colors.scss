@@ -1,5 +1,8 @@
+// Text
+$color__text-main: rgb(5, 54, 77);
 $color__text-white: #fff;
 
+// Background
 $color__background-body: rgba(248, 248, 248, 0.07);
 $color__background-primary: linear-gradient(
     to right,
@@ -17,15 +20,20 @@ $color__background-hr: linear-gradient(
   0% 0% / 200%;
 $color__background-gray: #f8faff;
 $color__background-hr: linear-gradient(
-  to right,
-  rgb(19, 69, 230) 0%,
-  rgb(237, 35, 159) 51%,
-  rgb(19, 69, 230) 100%
-)
-0% 0% / 200%;
-$color__background-shadow: rgba(0, 0, 0, 0.05);
+    to right,
+    rgb(19, 69, 230) 0%,
+    rgb(237, 35, 159) 51%,
+    rgb(19, 69, 230) 100%
+  )
+  0% 0% / 200%;
+$color__background-shadow: rgba(0, 0, 0, 0.07);
+$color__background-hover: #5f30ff;
+$color__background-shadow_hover: rgba(45, 45, 45, 0.05) 0px 2px 2px,
+  rgba(49, 49, 49, 0.05) 0px 4px 4px, rgba(42, 42, 42, 0.05) 0px 8px 8px,
+  rgba(32, 32, 32, 0.05) 0px 16px 16px, rgba(49, 49, 49, 0.05) 0px 32px 32px,
+  rgba(35, 35, 35, 0.05) 0px 64px 64px;
+
 /*$color__background-screen: #f1f1f1;
-$color__background-hr: #ccc;z
 $color__background-button: #e6e6e6;
 $color__background-pre: #eee;
 $color__background-ins: #fff9c0;
@@ -33,10 +41,8 @@ $color__background-ins: #fff9c0;
 $color__text-screen: #21759b;
 $color__text-input: #666;
 $color__text-input-focus: #111;
-$color__link: royalblue;
 $color__link-visited: purple;
 $color__link-hover: midnightblue;*/
-$color__text-main: rgb(5, 54, 77);
 
 /*$color__border-button: #ccc #ccc #bbb;
 $color__border-button-hover: #ccc #bbb #aaa;

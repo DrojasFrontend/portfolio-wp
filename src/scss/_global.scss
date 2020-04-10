@@ -10,6 +10,10 @@ body {
   background-color: $color__background-body;
 }
 
+.title {
+  @include title;
+}
+
 img {
   display: inline-block;
   vertical-align: middle;

@@ -1,0 +1,27 @@
+.service {
+  @include space;
+  &__item {
+    height: 400px;
+    @include rem(margin, 0 16px);
+    @include rem(padding, 50px 30px);
+    text-align: center;
+    background-color: $color__background-gray;
+    @include box-shadow;
+    figure {
+      width: 100%;
+      max-width: 100px;
+      @include rem(margin, 0 auto 20px auto);
+      @include rem(padding, 10px);
+    }
+    .h3 {
+      @include rem(margin-bottom, 25px);
+    }
+    .paragraph {
+      font-size: size(14);
+      line-height: 1.3;
+    }
+    &:hover {
+      @include hover;
+    }
+  }
+}

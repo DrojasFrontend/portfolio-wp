@@ -36,7 +36,6 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 		add_action( 'init', 'register_my_menus' );
 
 		// Banner
-		// register a custom post type called 'banner'
 		function wpmybanner_create_post_type() {
 			$labels = array(
 					'name' => __( 'Banners' ),
@@ -70,7 +69,6 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 		}
 		add_action( 'init', 'wpmybanner_create_post_type' );
 
-		// Function to show home page banner using query of banner post type
 		function wp_mybanner_banner() {
 			$query = new WP_Query( array(
 				'post_type' => 'banner',
@@ -99,23 +97,22 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 		}
 
 		// Statistics
-		// register a custom post type called 'statistics'
 		function wpmystatistics_create_post_type() {
 			$labels = array(
 					'name' => __( 'Statistics' ),
-					'singular_name' => __( 'statistics' ),
-					'add_new' => __( 'New statistics' ),
-					'add_new_item' => __( 'Add New statistics' ),
-					'edit_item' => __( 'Edit bastatisticsnner' ),
-					'new_item' => __( 'New statistics' ),
-					'view_item' => __( 'View statistics' ),
+					'singular_name' => __( 'statistic' ),
+					'add_new' => __( 'New statistic' ),
+					'add_new_item' => __( 'Add New statistic' ),
+					'edit_item' => __( 'Edit statistic' ),
+					'new_item' => __( 'New statistic' ),
+					'view_item' => __( 'View statistic' ),
 					'search_items' => __( 'Search statistics' ),
 					'not_found' =>  __( 'No statistics Found' ),
 					'not_found_in_trash' => __( 'No statistics found in Trash' ),
 			);
 			$args = array(
 					'labels' => $labels,
-					'menu_icon' => 'dashicons-format-image',
+					'menu_icon' => 'dashicons-chart-pie',
 					'has_archive' => true,
 					'public' => true,
 					'hierarchical' => false,
@@ -133,7 +130,6 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 		}
 		add_action( 'init', 'wpmystatistics_create_post_type' );
 
-		// Function to show home page banner using query of banner post type
 		function wp_mystatistics_statistics() {
 			$query = new WP_Query( array(
 				'post_type' => 'statistics',
@@ -158,6 +154,147 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 			wp_reset_postdata();
 		}
 
+		// Services
+		function wpmyservice_create_post_type() {
+			$labels = array(
+				'name' => __( 'Services' ),
+				'singular_name' => __( 'service' ),
+				'add_new' => __( 'New service' ),
+				'add_new_item' => __( 'Add New service' ),
+				'edit_item' => __( 'Edit service' ),
+				'new_item' => __( 'New service' ),
+				'view_item' => __( 'View service' ),
+				'search_items' => __( 'Search service' ),
+				'not_found' =>  __( 'No service Found' ),
+				'not_found_in_trash' => __( 'No service found in Trash' ),
+			);
+			$args = array(
+				'labels' => $labels,
+				'menu_icon' => 'dashicons-index-card',
+				'has_archive' => true,
+				'public' => true,
+				'hierarchical' => false,
+				'supports' => array(
+						'title',
+						'editor',
+						'excerpt',
+						'custom-fields',
+						'thumbnail',
+						'page-attributes'
+				),
+				'taxonomies' => array( 'post_tag', 'category'),
+			);
+			register_post_type( 'service', $args );
+		}
+		add_action( 'init', 'wpmyservice_create_post_type' );
+		
+		function wp_myservice_service() {
+			$query = new WP_Query( array( 'post_type' => 'service', )); ?>
+			<section <?php post_class( 'service' ); ?>>
+				<div class="container">
+					<div class="title">
+						<h5 class="h5"> OUR SERVICE</h5>
+						<h2 class="h2"> What Service We Offer For You</h2>
+					</div>
+					<div class="row">
+						<?php if ( $query->have_posts() ) { 
+							while ( $query->have_posts() ) : $query->the_post(); ?>
+								<div id="post-<?php the_ID(); ?>" class="col-4">
+									<div class="service__item">
+										<figure>
+											<?php the_post_thumbnail(); ?>
+										</figure>
+										<h3 class="h3">
+											<?php the_title(); ?>
+										</h3>
+										<p class="paragraph">
+											<?php the_content(); ?>
+										</p>
+									</div>
+								</div>								
+							<?php endwhile; ?>
+						<?php }
+						wp_reset_postdata(); ?>
+					</div>
+				</div>
+			</section>
+		<?php }
+
+		// testimonial
+		function wpmytestimonial_create_post_type() {
+			$labels = array(
+				'name' => __( 'testimonial' ),
+				'singular_name' => __( 'testimonial' ),
+				'add_new' => __( 'New testimonial' ),
+				'add_new_item' => __( 'Add New testimonial' ),
+				'edit_item' => __( 'Edit testimonial' ),
+				'new_item' => __( 'New testimonial' ),
+				'view_item' => __( 'View testimonial' ),
+				'search_items' => __( 'Search testimonial' ),
+				'not_found' =>  __( 'No testimonial Found' ),
+				'not_found_in_trash' => __( 'No testimonial found in Trash' ),
+			);
+			$args = array(
+				'labels' => $labels,
+				'menu_icon' => 'dashicons-images-alt2',
+				'has_archive' => true,
+				'public' => true,
+				'hierarchical' => false,
+				'supports' => array(
+						'title',
+						'editor',
+						'excerpt',
+						'custom-fields',
+						'thumbnail',
+						'page-attributes'
+				),
+				'taxonomies' => array( 'post_tag', 'category'),
+			);
+			register_post_type( 'testimonial', $args );
+		}
+		add_action( 'init', 'wpmytestimonial_create_post_type' );
+		
+		function wp_mytestimonial_testimonial() {
+			$query = new WP_Query( array( 'post_type' => 'testimonial', )); $upload_dir = wp_upload_dir(); ?>
+			<section <?php post_class( 'testimonial' ); ?>>
+				<div class="container">
+					<div class="title">
+						<h5 class="h5"> OUR TESITMONIAL </h5>
+						<h2 class="h2"> Honourable Client Says About Me </h2>
+					</div>			
+					<div class="testimonial-slick" style="background: url(<?php echo $upload_dir['url'] . '/about-us.png' ?>) no-repeat left center;">
+						<?php if ( $query->have_posts() ) { 
+							while ( $query->have_posts() ) : $query->the_post(); ?>
+								<div>
+									<div class="row">
+										<div class="col-7">
+											<figure>
+												<?php the_post_thumbnail(); ?>
+											</figure>								
+										</div>
+										<div class="col-5">
+											<h5 class="h5">
+												<?php the_title(); ?>
+											</h5>
+											<small>
+												<?php the_excerpt(); ?>
+											</small>
+											<p class="paragraph">
+												<?php the_content(); ?>
+											</p>
+										</div>
+									</div>
+								</div>								
+							<?php endwhile; ?>
+						<?php }
+						wp_reset_postdata(); ?>
+					</div>
+				</div>
+			</section>
+		<?php }
+
+		
+
 		// About ME
 		function show_category_posts( $atts ){
 			extract(shortcode_atts(array('cat'=> ''), $atts));
@@ -174,11 +311,15 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 								</div>
 								<div class="col-6">
 									<div class="about__content">
-										<h2 class="h2"> <?php the_title(); ?> </h2>
-										<p class="paragraph"> <?php the_excerpt(); ?> </p>
+										<div class="title">
+											<h5 class="h5"> <?php the_title(); ?> </h5>
+											<h2 class="h2"> <?php the_excerpt(); ?> </h2>
+										</div>
 										<p> <?php the_content(); ?> </p>
 
-										<a href="#" class="about__link-download">
+										<?php $iconDownload = get_post_meta(get_the_ID(), 'Icon Download', true) ?>
+										<?php $linkDownload = get_post_meta(get_the_ID(), 'Link Download', true) ?>
+										<a href="<?php echo $upload_dir['url'] . '/' . $linkDownload ?>" class="about__link-download" download>
 											<?php $iconDownload = get_post_meta(get_the_ID(), 'Icon Download', true) ?>
 											<img src="<?php echo $upload_dir['url'] . '/' . $iconDownload ?>">
 										</a>
