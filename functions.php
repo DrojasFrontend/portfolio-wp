@@ -349,7 +349,9 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 								<div class="col-4">
 									<div id="post-<?php the_ID(); ?>" class="post__item">
 										<figure>
-											<?php the_post_thumbnail(); ?>
+											<a href="<?php the_permalink(); ?>">
+												<?php the_post_thumbnail(); ?>
+											</a>
 											<figcaption>
 												<p class="autor">
 													<small>
@@ -431,8 +433,52 @@ function portfolio_wordpress_widgets_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
+
+	register_sidebar( array(
+		'name' => 'Footer Sidebar 1',
+		'id' => 'footer__1',
+		'description' => 'Appears in the footer area',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	register_sidebar( array(
+		'name' => 'Footer Sidebar 2',
+		'id' => 'footer__2',
+		'description' => 'Appears in the footer area',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	register_sidebar( array(
+		'name' => 'Footer Sidebar 3',
+		'id' => 'footer__3',
+		'description' => 'Appears in the footer area',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	register_sidebar( array(
+		'name' => 'Footer Bottom 1',
+		'id' => 'footer-bottom__1',
+		'description' => 'Appears in the footer area',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
 }
 add_action( 'widgets_init', 'portfolio_wordpress_widgets_init' );
+
+
+
+	
 
 /**
  * Enqueue scripts and styles.

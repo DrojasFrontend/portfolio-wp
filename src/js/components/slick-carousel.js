@@ -1,5 +1,6 @@
 // slider.js
-import $ from 'jquery';
+import $ from "jquery";
+import "./slick";
 
 $(".testimonial-slick").slick({
   fade: false,
@@ -8,5 +9,8 @@ $(".testimonial-slick").slick({
   infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
-  speed: 300
+  speed: 3000,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  useTransform: true
 });

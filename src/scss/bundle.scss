@@ -9,6 +9,7 @@
 
 // buttons
 @import "./components/buttons";
+@import "./components/slick";
 
 // Typography
 @import "./content/typography";
@@ -21,6 +22,7 @@
 
 // Partials
 @import "./partials/header";
+@import "./partials/footer";
 
 // Sections
 @import "./sections/about";
@@ -30,5 +32,4 @@
 @import "./sections/statistics";
 @import "./sections/testimony";
 
-//
-@import "../../node_modules/slick-carousel/slick/slick.scss";
+
