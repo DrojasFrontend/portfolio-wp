@@ -220,7 +220,7 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 			</section>
 		<?php }
 
-		// testimonial
+		// Testimonial
 		function wpmytestimonial_create_post_type() {
 			$labels = array(
 				'name' => __( 'testimonial' ),
@@ -293,12 +293,10 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 			</section>
 		<?php }
 
-		
-
 		// About ME
 		function show_category_posts( $atts ){
 			extract(shortcode_atts(array('cat'=> ''), $atts));
-			query_posts('cat='.$cat.'&orderby;=date&order;=ASC&posts;_per_page=-1');
+			query_posts('category_name=about-me');
 			if ( have_posts() ) :
 				while ( have_posts() ) : the_post(); $upload_dir = wp_upload_dir(); ?>
 					<section id="post-<?php the_ID(); ?>" <?php post_class( 'about' ); ?>>
@@ -335,6 +333,52 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 		}
 		
 		add_shortcode('show_cat', 'show_category_posts');
+
+		function show_category_posts_last( $atts ){
+			extract(shortcode_atts(array('cat'=> ''), $atts));
+			query_posts('category_name=post'); ?>
+			<section <?php post_class( 'post' ); ?>>
+				<div class="container">
+					<div class="title">
+						<h5 class="h5"> OUR BLOG </h5>
+						<h2 class="h2"> Latest Story From Our Blog </h2>
+					</div>
+					<div class="row">
+						<?php if ( have_posts() ) :
+							while ( have_posts() ) : the_post(); ?>
+								<div class="col-4">
+									<div id="post-<?php the_ID(); ?>" class="post__item">
+										<figure>
+											<?php the_post_thumbnail(); ?>
+											<figcaption>
+												<p class="autor">
+													<small>
+														<i class="dashicons-before dashicons-admin-users"></i>
+														<?php the_author(); ?>
+													</small>
+													<small>
+														<i class="dashicons-before dashicons-calendar-alt"></i>
+														<?php the_time( 'F jS, Y' ); ?>
+													</small>
+												</p>
+												<h5 class="h5"><?php the_title(); ?></h5>
+												<p class="paragraph">
+													<?php the_content(); ?>
+												</p>
+												<a class="link" href="<?php the_permalink(); ?>">Read More</a>
+											</figcaption>
+										</figure>										
+									</div>
+								</div>
+							<?php endwhile;
+						endif;
+						wp_reset_query(); ?>
+					</div>
+				</div>
+			</section>
+		<?php }
+		
+		add_shortcode('show_cat_post', 'show_category_posts_last');
 
 		add_theme_support( 'html5', array(
 			'search-form',

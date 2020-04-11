@@ -1,0 +1,71 @@
+.post {
+  @include space;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  figure {
+    margin: 0;
+  }
+  &__item {
+    @include rem(margin, 0 16px);
+    @include rem(padding, 0);
+    @include box-shadow;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    &:hover {
+      background-color: transparent !important;
+      @include hover;
+      figcaption {
+        color: $color__text-main;
+      }
+    }
+  }
+  figcaption {
+    @include rem(padding, 20px 20px 30px 20px);
+    color: $color__text-main;
+    background-color: $color__background-gray;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    .autor {
+      display: flex;
+      justify-content: space-between;
+      @include rem(margin-bottom, 16px);
+      font-size: size(12);
+      color: rgba(0, 0, 0, 0.5);
+      font-weight: bold;
+      small {
+        display: flex;
+        align-items: center;
+      }
+      i {
+        @include rem(margin-right, 10px);
+        &:before {
+          color: $color__text-primary;
+        }
+      }
+    }
+    .h5 {
+      @include rem(margin-bottom, 16px);
+    }
+    .paragraph {
+      font-size: size(14);
+      @include rem(margin-bottom, 20px);
+    }
+    .link {
+      position: relative;
+      display: block;
+      @include rem(padding, 5px 5px 5px 0);
+      font-size: size(11);
+      color: rgba(0, 0, 0, 0.2);
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background: $color__background-hr;
+      }
+    }
+  }
+}

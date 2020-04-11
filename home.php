@@ -18,8 +18,10 @@ get_header();
 
 <?php wp_mytestimonial_testimonial(); ?>
 
+<?php echo do_shortcode( '[show_cat_post cat="post"]'); ?>
 
-<h1 class="h1"> Tag </h1>
+
+<!--h1 class="h1"> Tag </h1>
 <hr class="line-small">
 <h1 class="h1">
 Frontend
@@ -53,6 +55,6 @@ Frontend
 <hr class="line-small">
 <a href="#" class="btn btn-primary">
   Buttons
-</a>
+</a-->
 
 <?php get_footer(); ?>
