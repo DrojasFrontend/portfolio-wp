@@ -2,6 +2,7 @@
 $color__text-main: rgb(5, 54, 77);
 $color__text-primary: #5f30ff;
 $color__text-white: #fff;
+$color__text-opacity: rgba(0, 0, 0, 0.2);
 
 // Background
 $color__background-white: #fff;
@@ -36,6 +37,9 @@ $color__background-shadow_hover: rgba(45, 45, 45, 0.05) 0px 2px 2px,
   rgba(32, 32, 32, 0.05) 0px 16px 16px, rgba(49, 49, 49, 0.05) 0px 32px 32px,
   rgba(35, 35, 35, 0.05) 0px 64px 64px;
 
+$color__border-text: #f0e9ff;
+$color__border-input: #f0e9ff;
+$color__border-hr: #f0e9ff;
 /*$color__background-screen: #f1f1f1;
 $color__background-button: #e6e6e6;
 $color__background-pre: #eee;

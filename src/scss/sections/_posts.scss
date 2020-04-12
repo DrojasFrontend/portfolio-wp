@@ -45,6 +45,7 @@
       i {
         @include rem(margin-right, 10px);
         &:before {
+          font-size: size(15);
           color: $color__text-primary;
         }
       }
@@ -61,7 +62,7 @@
       display: block;
       @include rem(padding, 5px 5px 5px 0);
       font-size: size(11);
-      color: rgba(0, 0, 0, 0.2);
+      color: $color__text-opacity;
       &:before {
         content: '';
         display: block;

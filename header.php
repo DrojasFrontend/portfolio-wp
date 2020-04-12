@@ -13,7 +13,7 @@
   <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="https://gmpg.org/xfn/11">
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
   <?php wp_head(); ?>
 </head>
 
@@ -45,17 +45,29 @@
 
       <!--button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 				<?php esc_html_e( 'Primary Menu', 'portfolio-wordpress' ); ?>
-			</button-->
-			<nav>
-				<?php wp_nav_menu( array( 
-					'theme_location' 	=> 'header-menu',
-					'container'				=>	'',
-					'menu_class'		 	=>	'menu',
-					'menu_id'        	=> 	'primary-menu',
-					) ); 
-				?>
-			</nav>
+      </button-->
       
+      <?php if (!is_single()) { ?>
+        <nav>
+          <?php wp_nav_menu( array( 
+            'theme_location' 	=> 'header-menu',
+            'container'				=>	'',
+            'menu_class'		 	=>	'menu menu-1',
+            'menu_id'        	=> 	'primary-menu',
+            ) ); 
+          ?>
+        </nav>
+      <?php } else { ?>
+      <nav>
+        <?php wp_nav_menu( array( 
+          'theme_location' 	=> 'header-menu',
+          'container'				=>	'',
+          'menu_class'		 	=>	'menu menu-2',
+          'menu_id'        	=> 	'primary-menu',
+          ) ); 
+        ?>
+      </nav>
+        <?php } ?>
     </header>
 
     <div id="content" class="site-content">

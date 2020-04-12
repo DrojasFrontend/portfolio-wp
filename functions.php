@@ -355,11 +355,11 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 											<figcaption>
 												<p class="autor">
 													<small>
-														<i class="dashicons-before dashicons-admin-users"></i>
+														<i class="fas fa-user-tie"></i>
 														<?php the_author(); ?>
 													</small>
 													<small>
-														<i class="dashicons-before dashicons-calendar-alt"></i>
+														<i class="far fa-calendar-alt"></i>
 														<?php the_time( 'F jS, Y' ); ?>
 													</small>
 												</p>

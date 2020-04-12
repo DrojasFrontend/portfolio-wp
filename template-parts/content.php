@@ -48,32 +48,51 @@ function the_breadcrumb() {
 		</div>
 	</header>
 
-	<?php portfolio_wordpress_post_thumbnail(); ?>
-
-	<div class="entry-content">
-		<?php
-		the_content( sprintf(
-			wp_kses(
-				/* translators: %s: Name of current post. Only visible to screen readers */
-				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'portfolio-wordpress' ),
-				array(
-					'span' => array(
-						'class' => array(),
-					),
-				)
-			),
-			get_the_title()
-		) );
-
-		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'portfolio-wordpress' ),
-			'after'  => '</div>',
-		) );
-		?>
-	</div>
-
-	<footer class="entry-footer">
+	<section class="blog-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-8">
+					<div class="blog-area__content">
+						<?php portfolio_wordpress_post_thumbnail(); ?>
+						<div class="blog-area__description">
+							<h2 class="h2"><?php the_title(); ?></h2>
+							<div class="blog-area__autor">
+								<small>
+									<i class="far fa-smile"></i>
+									<?php the_author(); ?>
+								</small>
+								<small>
+								<i class="far fa-calendar-alt"></i>
+									<?php the_time( 'F jS, Y' ); ?>
+								</small>
+							</div>
+							<?php the_content( sprintf(
+								wp_kses( __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'portfolio-wordpress' ),
+									array(
+										'span' => array(
+										'class' => array(),
+										),
+									)
+								),
+								get_the_title() ));
+								wp_link_pages( array(
+									'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'portfolio-wordpress' ),
+									'after'  => '</div>',
+								));
+							?>
+						</div>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="blog-area__sidebar">
+						<?php get_sidebar(); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--footer class="entry-footer">
 		<?php portfolio_wordpress_entry_footer(); ?>
-	</footer>
+	</footer-->
 </article>
-<?php the_ID(); ?>
+<!--?php the_ID(); ?-->

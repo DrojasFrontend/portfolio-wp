@@ -47,6 +47,7 @@
 				'</span>'
 			);
 			?>
-		</footer><!-- .entry-footer -->
+		</footer>
 	<?php endif; ?>
-</article><!-- #post-<?php the_ID(); ?> -->
+</article>
+<!--?php the_ID(); ?-->

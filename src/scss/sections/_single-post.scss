@@ -34,3 +34,107 @@
     color: $color__text-white;
   }
 }
+
+.blog-area {
+  @include space;
+  &__content {
+    @include rem(margin-bottom, 30px);
+    @include rem(padding, 0 5px);
+    .post-thumbnail {
+      @include rem(margin-bottom, 30px);
+      img {
+        object-fit: cover;
+      }
+    }
+    .h2 {
+      @include rem(margin-bottom, 30px);
+    }
+  }
+  &__description {
+    @include rem(padding-bottom, 30px);
+    border-bottom: 1px solid $color__border-hr;
+  }
+  &__autor {
+    display: flex;
+    justify-content: space-between;
+    small {
+      @include rem(margin-bottom, 20px);
+      i {
+        color: $color__text-primary;
+      }
+    }
+  }
+  &__sidebar {
+    @include rem(padding, 0 5px 5px 5px);
+    section {
+      @include rem(padding, 25px);
+      @include rem(margin-bottom, 20px);
+      background-color: $color__background-gray;
+      .widget-title {
+        @include rem(margin-bottom, 40px);
+        @include rem(padding-bottom, 10px);
+        font-size: size(20);
+        border-bottom: 1px solid $color__border-text;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    [type="search"] {
+      width: 100%;
+      @include rem(margin-bottom, 10px);
+      @include rem(padding, 15px 20px);
+      border: 1px solid $color__border-input;
+      border-color: $color__border-input;
+      outline: none;
+    }
+    [type="submit"] {
+      color: $color__text-white;
+      @include rem(padding, 15px 20px);
+      border: 0;
+      text-transform: uppercase;
+      background: $color__background-primary;
+    }
+    .screen-reader-text {
+      display: none;
+    }
+    .widget_recent_entries {
+      .post {
+        &_item {
+          display: flex;
+          align-items: center;
+          @include rem(margin-bottom, 10px);
+          @include rem(padding, 5px 5px 5px 0);
+          figure {
+            width: 100%;
+            max-width: 80px;
+            @include rem(margin, 0 10px 0 0);
+          }
+          a {
+            display: block;
+            font-size: size(13);
+            @include rem(padding, 5px);
+          }
+        }
+        &_date {
+          display: block;
+          @include rem(padding, 5px);
+          font-size: size(13);
+          color: $color__text-opacity;
+        }
+      }
+    }
+  }
+}
+
+.post__navigation {
+  @include rem(padding, 0 5px);
+  .h3 {
+    @include rem(padding, 10px 0);
+  }
+  &-links {
+    display: flex;
+    justify-content: space-between;
+  }
+}
