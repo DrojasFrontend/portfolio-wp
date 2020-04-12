@@ -5,6 +5,11 @@
   height: 60px;
   @include rem(padding, 0 20px);
   z-index: 1;
+  background: transparent;
+  transition: background .9s;
+  &.active {
+    background-color: $color__background-gray;
+  }
   &-logo {
     position: absolute;
     top: 50%;

@@ -4,7 +4,9 @@ $color__text-primary: #5f30ff;
 $color__text-white: #fff;
 
 // Background
+$color__background-white: #fff;
 $color__background-black: #000;
+$color__background-gray: #f8faff;
 $color__background-body: rgba(248, 248, 248, 0.07);
 $color__background-primary: linear-gradient(
     to right,
@@ -20,7 +22,6 @@ $color__background-hr: linear-gradient(
     rgb(19, 69, 230) 100%
   )
   0% 0% / 200%;
-$color__background-gray: #f8faff;
 $color__background-hr: linear-gradient(
     to right,
     rgb(19, 69, 230) 0%,

@@ -9,25 +9,44 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
+<?php $upload_dir = wp_upload_dir(); 
 
-		if ( 'post' === get_post_type() ) :
+function the_breadcrumb() {
+	if (is_category() || is_single()) {
+		the_category('title_li=');
+		if (is_single()) { ?>
+			<span></span>
+			<?php the_title();
+		}
+	} elseif (is_page()) {
+		echo the_title();
+	}
+}
+
+?>
+
+<article id="post-<?php the_ID(); ?>" >
+	<header class="banner__area" <?php post_class(); ?> style="background: url(<?php echo $upload_dir['url'] . '/common-banner.png' ?>) no-repeat center;">
+		<div class="banner__content">
+			<?php
+				if ( is_singular() ) :
+					the_title( '<h1 class="h1">', '</h1>' );
+				else :
+					the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+				endif;
+
+				if ( 'post' === get_post_type() ) :
 			?>
-			<div class="entry-meta">
-				<?php
+				<!--div class="entry-meta">
+			<?php
 				portfolio_wordpress_posted_on();
 				portfolio_wordpress_posted_by();
-				?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+			?>
+				</div-->
+			<?php endif; ?>
+			<p class="paragraph"><?php the_breadcrumb(); ?></p>
+		</div>
+	</header>
 
 	<?php portfolio_wordpress_post_thumbnail(); ?>
 
@@ -51,9 +70,10 @@
 			'after'  => '</div>',
 		) );
 		?>
-	</div><!-- .entry-content -->
+	</div>
 
 	<footer class="entry-footer">
 		<?php portfolio_wordpress_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+	</footer>
+</article>
+<?php the_ID(); ?>

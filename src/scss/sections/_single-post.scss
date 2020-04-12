@@ -1,0 +1,36 @@
+.banner__area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  .h1 {
+    color: $color__text-white;
+    text-transform: uppercase;
+    @include rem(margin-bottom, 25px);
+  }
+  span {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 2px;
+    padding: 0 13px;
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -2px;
+      left: 5px;
+      width: 20px;
+      height: 4px;
+      background: $color__background-hr;
+    }
+  }
+  .paragraph {
+    display: flex;
+    align-items: center;
+    color: $color__text-white;
+  }
+}
