@@ -1,40 +1,43 @@
 .site__footer {
-  @include rem(margin-top, 90px);
-  @include rem(padding, 60px 20px);
-  background: $color__background-black;
-  .footer {
-    &__logo {
-      text-align: center;
-      @include rem(margin-bottom, 10px);
-      @include rem(padding, 15px 0);
-    }
-    &__menu {
-      display: block;
-      @include rem(margin-bottom, 60px);
-      @include rem(padding, 15px 0);
-      ul {
-        display: flex;
-        justify-content: center;
-      }
-      a {
-        color: $color__text-white;
-        @include rem(margin, 0 25px);
-      }
-    }
-    &-bottom {
-      @include rem(padding, 10px 0);
-      font-size: size(11);
-      text-align: center;
-      color: $color__text-white;
-       a {
-        display: block;
-        line-height: 20px;
-       }
-       span {
-         &:before {
-           color: $color__text-primary;
-         }
-       }
-    }
-  }
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	@include rem(margin-top, 90px);
+	@include rem(padding, 60px 20px);
+	background: $color__background-black;
+	.footer {
+		&__logo {
+			text-align: center;
+			@include rem(margin-bottom, 10px);
+			@include rem(padding, 15px 0);
+		}
+		&__menu {
+			display: block;
+			@include rem(margin-bottom, 60px);
+			@include rem(padding, 15px 0);
+			ul {
+				display: flex;
+				justify-content: center;
+			}
+			a {
+				color: $color__text-white;
+				@include rem(margin, 0 25px);
+			}
+		}
+		&-bottom {
+			@include rem(padding, 10px 0);
+			font-size: size(11);
+			text-align: center;
+			color: $color__text-white;
+			a {
+				display: block;
+				line-height: 20px;
+			}
+			span {
+				&:before {
+					color: $color__text-primary;
+				}
+			}
+		}
+	}
 }

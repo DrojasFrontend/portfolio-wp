@@ -4,7 +4,7 @@
 	max-width: 100%;
 	height: 60px;
 	@include rem(padding, 0 20px);
-	z-index: 1;
+	z-index: 2;
 	background: transparent;
 	transition: background 0.9s;
 	&.is-active {
@@ -20,6 +20,14 @@
 			}
 		}
 	}
+
+	&.is-opened-navi {
+		.menu-nav {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+
 	&-logo {
 		position: absolute;
 		top: 50%;
@@ -71,6 +79,269 @@
 	pointer-events: none;
 }
 
+.hamburger {
+	width: 64px;
+	height: 64px;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	position: absolute;
+	top: 2.25em;
+	right: 2.25em;
+	z-index: 110;
+	border-radius: 50%;
+	background-color: $color__background-blue;
+	pointer-events: auto;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	&:after {
+		width: 64px;
+		height: 64px;
+		box-sizing: border-box;
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		pointer-events: none;
+		border: 4px solid #9236f7;
+		border-radius: 50%;
+		-webkit-animation-duration: 1.2s;
+		animation-duration: 1.2s;
+		-webkit-animation-name: intervalHamburgerBorder;
+		animation-name: intervalHamburgerBorder;
+		-webkit-animation-iteration-count: infinite;
+		animation-iteration-count: infinite;
+	}
+	&__line {
+		width: 28px;
+		height: 2px;
+		overflow: hidden;
+		position: absolute;
+		z-index: 10;
+		@include transition;
+
+		&-in {
+			width: 84px;
+			height: 2px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			@include transition;
+
+			&:before,
+			&:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				display: block;
+				width: 28px;
+				height: 2px;
+				background-color: $color__border-text;
+
+				-webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+				transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+				-webkit-transition-property: -webkit-transform;
+				transition-property: -webkit-transform;
+				transition-property: transform;
+				transition-property: transform, -webkit-transform;
+			}
+			&:before {
+				left: -56px;
+			}
+
+			&:after {
+				left: 0;
+			}
+			&--cross01,
+			&--cross02 {
+				-webkit-transform: translateX(-33.3%);
+				transform: translateX(-33.3%);
+			}
+			&--01 {
+				-webkit-transition-delay: 0.2s;
+				transition-delay: 0.2s;
+			}
+
+			&--02 {
+				-webkit-transition-delay: 0.25s;
+				transition-delay: 0.25s;
+				&:before,
+				&:after {
+					-webkit-transition-delay: 0.05s;
+					transition-delay: 0.05s;
+				}
+			}
+			&--03 {
+				-webkit-transition-delay: 0.3s;
+				transition-delay: 0.3s;
+				&:before,
+				&:after {
+					-webkit-transition-delay: 0.1s;
+					transition-delay: 0.1s;
+				}
+			}
+			&--cross01 {
+				-webkit-transition-delay: 0s;
+				transition-delay: 0s;
+			}
+
+			&--cross02 {
+				-webkit-transition-delay: 0.05s;
+				transition-delay: 0.05s;
+				&:before,
+				&:after {
+					-webkit-transition-delay: 0.1s;
+					transition-delay: 0.1s;
+				}
+			}
+		}
+		&--01,
+		&--02,
+		&--03,
+		&--cross01,
+		&--cross02 {
+			left: 18px;
+		}
+		&--01 {
+			top: 24.6px;
+		}
+		&--02,
+		&--cross01,
+		&--cross02 {
+			top: 31px;
+		}
+		&--03 {
+			top: 37.4px;
+		}
+		&--cross01 {
+			-webkit-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+
+		&--cross02 {
+			-webkit-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+		}
+	}
+	&.is-opened-navi {
+		.hamburger__line-in {
+			&--01,
+			&--02,
+			&--03 {
+				-webkit-transform: translateX(33.3%);
+				transform: translateX(33.3%);
+			}
+			&--01 {
+				-webkit-transition-delay: 0s;
+				transition-delay: 0s;
+			}
+			&--02 {
+				-webkit-transition-delay: 0.05s;
+				transition-delay: 0.05s;
+			}
+			&--03 {
+				-webkit-transition-delay: 0.1s;
+				transition-delay: 0.1s;
+			}
+			&--cross01,
+			&--cross02 {
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			&--cross01 {
+				-webkit-transition-delay: 0.25s;
+				transition-delay: 0.25s;
+			}
+
+			&--cross02 {
+				-webkit-transition-delay: 0.3s;
+				transition-delay: 0.3s;
+			}
+		}
+		&:hover {
+			.hamburger__line-in {
+				&--cross01,
+				&--cross02 {
+					&:before,
+					&:after {
+						-webkit-transition-duration: 1s;
+						transition-duration: 1s;
+					}
+				}
+				&--01,
+				&--02,
+				&--03 {
+					&:before,
+					&:after {
+						-webkit-transition-duration: 0s;
+						transition-duration: 0s;
+					}
+				}
+			}
+		}
+	}
+	&:hover {
+		.hamburger__line-in {
+			&:before,
+			&:after {
+				-webkit-transform: translateX(200%);
+				transform: translateX(200%);
+			}
+			&--01,
+			&--02,
+			&--03 {
+				&:before,
+				&:after {
+					-webkit-transition-duration: 1s;
+					transition-duration: 1s;
+				}
+			}
+			&--cross01,
+			&--cross02 {
+				&:before,
+				&:after {
+					-webkit-transition-duration: 0s;
+					transition-duration: 0s;
+				}
+			}
+		}
+	}
+}
+
+@-webkit-keyframes intervalHamburgerBorder {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	80% {
+		-webkit-transform: scale(1.6);
+		transform: scale(1.6);
+	}
+	100% {
+		opacity: 0;
+		-webkit-transform: scale(1.6);
+		transform: scale(1.6);
+	}
+}
+
+@keyframes intervalHamburgerBorder {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	80% {
+		-webkit-transform: scale(1.6);
+		transform: scale(1.6);
+	}
+	100% {
+		opacity: 0;
+		-webkit-transform: scale(1.6);
+		transform: scale(1.6);
+	}
+}
+
 .global-menu {
 	width: 100vw;
 	height: 90vh;
@@ -108,6 +379,10 @@
 				transition-delay: 0.7s;
 			}
 		}
+	}
+	.global-menu__item {
+		color: $color__text-white;
+		font-size: size(50);
 	}
 }
 
@@ -201,148 +476,5 @@
 		opacity: 0;
 		-webkit-transform: scale(1.6);
 		transform: scale(1.6);
-	}
-}
-
-.hamburger {
-	width: 64px;
-	height: 64px;
-	opacity: 0;
-	visibility: hidden;
-	position: relative;
-	cursor: pointer;
-	position: absolute;
-	top: 2.25em;
-	right: 2.25em;
-	z-index: 110;
-	border-radius: 50%;
-	background-color: $color__background-blue;
-	pointer-events: auto;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-	@include transition;
-
-	&.is-active {
-		opacity: 1;
-		visibility: visible;
-	}
-	&:after {
-		width: 64px;
-		height: 64px;
-		box-sizing: border-box;
-		content: "";
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		pointer-events: none;
-		border: 4px solid rgba(237, 35, 159, 0.2);
-		border-radius: 50%;
-		-webkit-animation-duration: 1.2s;
-		animation-duration: 1.2s;
-		-webkit-animation-name: intervalHamburgerBorder;
-		animation-name: intervalHamburgerBorder;
-		-webkit-animation-iteration-count: infinite;
-		animation-iteration-count: infinite;
-	}
-	.hamburger__line {
-		width: 28px;
-		height: 2px;
-		overflow: hidden;
-		position: absolute;
-		z-index: 10;
-
-		@include transition;
-
-		&-in {
-			width: 84px;
-			height: 2px;
-			position: absolute;
-			top: 0;
-			left: 0;
-
-			@include transition;
-
-			&:before,
-			&:after {
-				width: 28px;
-				height: 2px;
-				content: "";
-				display: block;
-				position: absolute;
-				top: 0;
-				background-color: $color__border-line-white;
-
-				-webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-				transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-				-webkit-transition-property: -webkit-transform;
-				transition-property: -webkit-transform;
-				transition-property: transform;
-				transition-property: transform, -webkit-transform;
-			}
-			&:before {
-				left: -56px;
-			}
-			&:after {
-				left: 0;
-			}
-
-			&--cross01,
-			&--cross02 {
-				-webkit-transform: translateX(-33.3%);
-				transform: translateX(-33.3%);
-			}
-			&--01 {
-				-webkit-transition-delay: 0.2s;
-				transition-delay: 0.2s;
-			}
-
-			&--02 {
-				-webkit-transition-delay: 0.25s;
-				transition-delay: 0.25s;
-			}
-
-			&--02 {
-				&:before,
-				&:after {
-					-webkit-transition-delay: 0.05s;
-					transition-delay: 0.05s;
-				}
-			}
-		}
-		&--01,
-		&--02,
-		&--03,
-		&--cross01,
-		&--cross02 {
-			left: 18px;
-		}
-		&--01 {
-			top: 24.6px;
-		}
-		&--02,
-		&--cross01,
-		&--cross02 {
-			top: 31px;
-		}
-		&--03 {
-			top: 37.4px;
-
-			-webkit-transition-delay: 0.3s;
-			transition-delay: 0.3s;
-			&:before,
-			&:after {
-				-webkit-transition-delay: 0.1s;
-				transition-delay: 0.1s;
-			}
-		}
-		&--cross01 {
-			-webkit-transform: rotate(45deg);
-			transform: rotate(45deg);
-		}
-		&--cross02 {
-			-webkit-transform: rotate(-45deg);
-			transform: rotate(-45deg);
-		}
 	}
 }

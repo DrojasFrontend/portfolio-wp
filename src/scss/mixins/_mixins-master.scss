@@ -39,6 +39,7 @@ $base-size: 16;
 	transform: translate(0, -4px);
 }
 
+// Transition
 @mixin transition {
 	-webkit-transition-duration: 0.6s;
 	transition-duration: 0.6s;

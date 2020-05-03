@@ -29,7 +29,7 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 			register_nav_menus(
 				array(
 					'header-menu' => __( 'Header Menu' ),
-					//'extra-menu' => __( 'Extra Menu' )
+					'footer-menu' => __( 'Footer Menu' )
 				)
 			);
 		}
@@ -75,24 +75,26 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 			));
 
 			if ( $query->have_posts() ) { ?>
-				<?php while ( $query->have_posts() ) : $query->the_post(); 
+<?php while ( $query->have_posts() ) : $query->the_post(); 
 					$upload_dir = wp_upload_dir();
 				?>
-					<?php $backgroundImg = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' ); ?>
-						<section id="post-<?php the_ID(); ?>" <?php post_class( 'banner' ); ?> style="background: url('<?php echo $backgroundImg[0]; ?>') no-repeat center;">
-							<div class="banner__content">
-								<?php the_content(); ?>
-								<div class="banner__social">
-									<a href="#"><img src="<?php echo $upload_dir['url'] . '/icon-linkedin.svg' ?>"></a>
-									<a href="#"><img src="<?php echo $upload_dir['url'] . '/icon-facebook.svg' ?>"></a>
-									<a href="#"><img src="<?php echo $upload_dir['url'] . '/icon-whatsapp.svg' ?>"></a>
-								</div>
-								<a href="" class="btn btn-primary">See my work</a>
-							</div>
-															
-						</section>
-				<?php endwhile; ?>
-			<?php }
+<?php $backgroundImg = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' ); ?>
+<section id="post-<?php the_ID(); ?>" <?php post_class( 'banner' ); ?>
+  style="background: url('<?php echo $backgroundImg[0]; ?>') no-repeat center;">
+  <div class="banner__content">
+    <?php the_content(); ?>
+    <div class="banner__social">
+      <a href="#"><img src="<?php echo $upload_dir['baseurl'] .'/2020/04'.'/icon-linkedin.svg' ?>"></a>
+      <a href="#"><img src="<?php echo $upload_dir['baseurl'] .'/2020/04'.'/icon-facebook.svg' ?>"></a>
+      <a href="#"><img src="<?php echo $upload_dir['baseurl'] .'/2020/04'.'/icon-whatsapp.svg' ?>"></a>
+
+    </div>
+    <a href="" class="btn btn-primary">See my work</a>
+  </div>
+
+</section>
+<?php endwhile; ?>
+<?php }
 			wp_reset_postdata();
 		}
 
@@ -136,21 +138,21 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 			));
 
 			if ( $query->have_posts() ) { ?>
-				<section id="post-<?php the_ID(); ?>" <?php post_class( 'statistics' ); ?>>
-					<div class="container">
-						<div class="row">
-							<?php while ( $query->have_posts() ) : $query->the_post(); ?>
-								<div class="col-3 statistics__item">
-									<div class="statistics__item-counter">
-										<h3 class="h3"><?php the_title(); ?></h3>
-										<p class="paragraph"><?php the_content(); ?></p>
-									</div>
-								</div>
-							<?php endwhile; ?>
-						</div>
-					</div>
-				</section>
-			<?php }
+<section id="post-<?php the_ID(); ?>" <?php post_class( 'statistics' ); ?>>
+  <div class="container">
+    <div class="row">
+      <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+      <div class="col-3 statistics__item">
+        <div class="statistics__item-counter">
+          <h3 class="h3"><?php the_title(); ?></h3>
+          <p class="paragraph"><?php the_content(); ?></p>
+        </div>
+      </div>
+      <?php endwhile; ?>
+    </div>
+  </div>
+</section>
+<?php }
 			wp_reset_postdata();
 		}
 
@@ -190,35 +192,35 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 		
 		function wp_myservice_service() {
 			$query = new WP_Query( array( 'post_type' => 'service', )); ?>
-			<section <?php post_class( 'service' ); ?>>
-				<div class="container">
-					<div class="title">
-						<h5 class="h5"> OUR SERVICE</h5>
-						<h2 class="h2"> What Service We Offer For You</h2>
-					</div>
-					<div class="row">
-						<?php if ( $query->have_posts() ) { 
+<section <?php post_class( 'service' ); ?>>
+  <div class="container">
+    <div class="title">
+      <h5 class="h5"> OUR SERVICE</h5>
+      <h2 class="h2"> What Service We Offer For You</h2>
+    </div>
+    <div class="row">
+      <?php if ( $query->have_posts() ) { 
 							while ( $query->have_posts() ) : $query->the_post(); ?>
-								<div id="post-<?php the_ID(); ?>" class="col-4">
-									<div class="service__item">
-										<figure>
-											<?php the_post_thumbnail(); ?>
-										</figure>
-										<h3 class="h3">
-											<?php the_title(); ?>
-										</h3>
-										<p class="paragraph">
-											<?php the_content(); ?>
-										</p>
-									</div>
-								</div>								
-							<?php endwhile; ?>
-						<?php }
+      <div id="post-<?php the_ID(); ?>" class="col-4">
+        <div class="service__item">
+          <figure>
+            <?php the_post_thumbnail(); ?>
+          </figure>
+          <h3 class="h3">
+            <?php the_title(); ?>
+          </h3>
+          <p class="paragraph">
+            <?php the_content(); ?>
+          </p>
+        </div>
+      </div>
+      <?php endwhile; ?>
+      <?php }
 						wp_reset_postdata(); ?>
-					</div>
-				</div>
-			</section>
-		<?php }
+    </div>
+  </div>
+</section>
+<?php }
 
 		// Testimonial
 		function wpmytestimonial_create_post_type() {
@@ -256,42 +258,43 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 		
 		function wp_mytestimonial_testimonial() {
 			$query = new WP_Query( array( 'post_type' => 'testimonial', )); $upload_dir = wp_upload_dir(); ?>
-			<section <?php post_class( 'testimonial' ); ?>>
-				<div class="container">
-					<div class="title">
-						<h5 class="h5"> OUR TESITMONIAL </h5>
-						<h2 class="h2"> Honourable Client Says About Me </h2>
-					</div>			
-					<div class="testimonial-slick" style="background: url(<?php echo $upload_dir['url'] . '/about-us.png' ?>) no-repeat left center;">
-						<?php if ( $query->have_posts() ) { 
+<section <?php post_class( 'testimonial' ); ?>>
+  <div class="container">
+    <div class="title">
+      <h5 class="h5"> OUR TESITMONIAL </h5>
+      <h2 class="h2"> Honourable Client Says About Me </h2>
+    </div>
+    <div class="testimonial-slick"
+      style="background: url(<?php echo $upload_dir['baseurl'] .'/2020/04' . '/about-us.png' ?>) no-repeat left center;">
+      <?php if ( $query->have_posts() ) { 
 							while ( $query->have_posts() ) : $query->the_post(); ?>
-								<div>
-									<div class="row">
-										<div class="col-7">
-											<figure>
-												<?php the_post_thumbnail(); ?>
-											</figure>								
-										</div>
-										<div class="col-5">
-											<h5 class="h5">
-												<?php the_title(); ?>
-											</h5>
-											<small>
-												<?php the_excerpt(); ?>
-											</small>
-											<p class="paragraph">
-												<?php the_content(); ?>
-											</p>
-										</div>
-									</div>
-								</div>								
-							<?php endwhile; ?>
-						<?php }
+      <div>
+        <div class="row">
+          <div class="col-7">
+            <figure>
+              <?php the_post_thumbnail(); ?>
+            </figure>
+          </div>
+          <div class="col-5">
+            <h5 class="h5">
+              <?php the_title(); ?>
+            </h5>
+            <small>
+              <?php the_excerpt(); ?>
+            </small>
+            <p class="paragraph">
+              <?php the_content(); ?>
+            </p>
+          </div>
+        </div>
+      </div>
+      <?php endwhile; ?>
+      <?php }
 						wp_reset_postdata(); ?>
-					</div>
-				</div>
-			</section>
-		<?php }
+    </div>
+  </div>
+</section>
+<?php }
 
 		// About ME
 		function show_category_posts( $atts ){
@@ -299,35 +302,35 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 			query_posts('category_name=about-me');
 			if ( have_posts() ) :
 				while ( have_posts() ) : the_post(); $upload_dir = wp_upload_dir(); ?>
-					<section id="post-<?php the_ID(); ?>" <?php post_class( 'about' ); ?>>
-						<div class="container">
-							<div class="row">
-								<div class="col-6">
-									<figure>
-										<?php the_post_thumbnail(); ?>
-									</figure>				
-								</div>
-								<div class="col-6">
-									<div class="about__content">
-										<div class="title">
-											<h5 class="h5"> <?php the_title(); ?> </h5>
-											<h2 class="h2"> <?php the_excerpt(); ?> </h2>
-										</div>
-										<p> <?php the_content(); ?> </p>
+<section id="post-<?php the_ID(); ?>" <?php post_class( 'about' ); ?>>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <figure>
+          <?php the_post_thumbnail(); ?>
+        </figure>
+      </div>
+      <div class="col-6">
+        <div class="about__content">
+          <div class="title">
+            <h5 class="h5"> <?php the_title(); ?> </h5>
+            <h2 class="h2"> <?php the_excerpt(); ?> </h2>
+          </div>
+          <p> <?php the_content(); ?> </p>
 
-										<?php $iconDownload = get_post_meta(get_the_ID(), 'Icon Download', true) ?>
-										<?php $linkDownload = get_post_meta(get_the_ID(), 'Link Download', true) ?>
-										<a href="<?php echo $upload_dir['url'] . '/' . $linkDownload ?>" class="about__link-download" download>
-											<?php $iconDownload = get_post_meta(get_the_ID(), 'Icon Download', true) ?>
-											<img src="<?php echo $upload_dir['url'] . '/' . $iconDownload ?>">
-										</a>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-					</section>
-				<?php endwhile;
+          <?php $iconDownload = get_post_meta(get_the_ID(), 'Icon Download', true) ?>
+          <?php $linkDownload = get_post_meta(get_the_ID(), 'Link Download', true) ?>
+          <a href="<?php echo $upload_dir['url'] . '/' . $linkDownload ?>" class="about__link-download" download>
+            <?php $iconDownload = get_post_meta(get_the_ID(), 'Icon Download', true) ?>
+            <img src="<?php echo $upload_dir['baseurl'] . '/2020/04/' . $iconDownload ?>">
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<?php endwhile;
 			endif;
 			wp_reset_query();
 		}
@@ -337,48 +340,48 @@ if ( ! function_exists( 'portfolio_wordpress_setup' ) ) :
 		function show_category_posts_last( $atts ){
 			extract(shortcode_atts(array('cat'=> ''), $atts));
 			query_posts('category_name=post'); ?>
-			<section <?php post_class( 'post' ); ?>>
-				<div class="container">
-					<div class="title">
-						<h5 class="h5"> OUR BLOG </h5>
-						<h2 class="h2"> Latest Story From Our Blog </h2>
-					</div>
-					<div class="row">
-						<?php if ( have_posts() ) :
+<section <?php post_class( 'post' ); ?>>
+  <div class="container">
+    <div class="title">
+      <h5 class="h5"> OUR BLOG </h5>
+      <h2 class="h2"> Latest Story From Our Blog </h2>
+    </div>
+    <div class="row">
+      <?php if ( have_posts() ) :
 							while ( have_posts() ) : the_post(); ?>
-								<div class="col-4">
-									<div id="post-<?php the_ID(); ?>" class="post__item">
-										<figure>
-											<a href="<?php the_permalink(); ?>">
-												<?php the_post_thumbnail(); ?>
-											</a>
-											<figcaption>
-												<p class="autor">
-													<small>
-														<i class="fas fa-user-tie"></i>
-														<?php the_author(); ?>
-													</small>
-													<small>
-														<i class="far fa-calendar-alt"></i>
-														<?php the_time( 'F jS, Y' ); ?>
-													</small>
-												</p>
-												<h5 class="h5"><?php the_title(); ?></h5>
-												<p class="paragraph">
-													<?php the_content(); ?>
-												</p>
-												<a class="link" href="<?php the_permalink(); ?>">Read More</a>
-											</figcaption>
-										</figure>										
-									</div>
-								</div>
-							<?php endwhile;
+      <div class="col-4">
+        <div id="post-<?php the_ID(); ?>" class="post__item">
+          <figure>
+            <a href="<?php the_permalink(); ?>">
+              <?php the_post_thumbnail(); ?>
+            </a>
+            <figcaption>
+              <p class="autor">
+                <small>
+                  <i class="fas fa-user-tie"></i>
+                  <?php the_author(); ?>
+                </small>
+                <small>
+                  <i class="far fa-calendar-alt"></i>
+                  <?php the_time( 'F jS, Y' ); ?>
+                </small>
+              </p>
+              <h5 class="h5"><?php the_title(); ?></h5>
+              <p class="paragraph">
+                <?php the_content(); ?>
+              </p>
+              <a class="link" href="<?php the_permalink(); ?>">Read More</a>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <?php endwhile;
 						endif;
 						wp_reset_query(); ?>
-					</div>
-				</div>
-			</section>
-		<?php }
+    </div>
+  </div>
+</section>
+<?php }
 		
 		add_shortcode('show_cat_post', 'show_category_posts_last');
 
