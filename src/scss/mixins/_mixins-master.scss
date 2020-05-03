@@ -1,42 +1,49 @@
 // Font size
 $base-size: 16;
 @function size($target, $context: $base-size) {
-  @return ($target / $context) * 1rem;
+	@return ($target / $context) * 1rem;
 }
 
 // Title Width
 @mixin title {
-  width: 100%;
-  max-width: 360px;
-  @include rem(margin-bottom, 25px);
-  @include rem(padding, 15px 15px 15px 0);
-  text-transform: uppercase;
-  h5 {
-    @include rem(margin-bottom, 16px);
-  }
+	width: 100%;
+	max-width: 360px;
+	@include rem(margin-bottom, 25px);
+	@include rem(padding, 15px 15px 15px 0);
+	text-transform: uppercase;
+	h5 {
+		@include rem(margin-bottom, 16px);
+	}
 }
 
 // Spaces
 @mixin space {
-  @include rem(padding-top, 90px);
+	@include rem(padding-top, 90px);
 }
 
 // Shadow items
 @mixin box-shadow {
-  box-shadow: 0 2px 20px 0 $color__background-shadow;
-  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out,
-    opacity 0.2s ease-out, color 0.3s ease-out, background-color 0.7s ease-out;
-  transition-delay: 0.1s;
-  border-radius: 4px;
-  transform: translateZ(0);
+	box-shadow: 0 2px 20px 0 $color__background-shadow;
+	transition: box-shadow 0.3s ease-out, transform 0.3s ease-out,
+		opacity 0.2s ease-out, color 0.3s ease-out, background-color 0.7s ease-out;
+	transition-delay: 0.1s;
+	border-radius: 4px;
+	transform: translateZ(0);
 }
 
 // Hover
 @mixin hover {
-  color: $color__text-white;
-  background-color: $color__background-hover;
-  box-shadow: $color__background-shadow_hover;
-  transform: translate(0, -4px);
+	color: $color__text-white;
+	background-color: $color__background-hover;
+	box-shadow: $color__background-shadow_hover;
+	transform: translate(0, -4px);
+}
+
+@mixin transition {
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+	-webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+	transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 // Margin and Padding
@@ -45,69 +52,69 @@ $rem-fallback: false !default;
 $rem-px-only: false !default;
 
 @function rem-separator($list, $separator: false) {
-  @if $separator == "comma" or $separator == "space" {
-    @return append($list, null, $separator);
-  }
+	@if $separator == "comma" or $separator == "space" {
+		@return append($list, null, $separator);
+	}
 
-  @if function-exists("list-separator") == true {
-    @return list-separator($list);
-  }
+	@if function-exists("list-separator") == true {
+		@return list-separator($list);
+	}
 
-  // list-separator polyfill by Hugo Giraudel (https://sass-compatibility.github.io/#list_separator_function)
-  $test-list: ();
-  @each $item in $list {
-    $test-list: append($test-list, $item, space);
-  }
+	// list-separator polyfill by Hugo Giraudel (https://sass-compatibility.github.io/#list_separator_function)
+	$test-list: ();
+	@each $item in $list {
+		$test-list: append($test-list, $item, space);
+	}
 
-  @return if($test-list == $list, space, comma);
+	@return if($test-list == $list, space, comma);
 }
 
 @mixin rem-baseline($zoom: 100%) {
-  font-size: $zoom / 16px * $rem-baseline;
+	font-size: $zoom / 16px * $rem-baseline;
 }
 
 @function rem-convert($to, $values...) {
-  $result: ();
-  $separator: rem-separator($values);
+	$result: ();
+	$separator: rem-separator($values);
 
-  @each $value in $values {
-    @if type-of($value) == "number" and unit($value) == "rem" and $to == "px" {
-      $result: append($result, $value / 1rem * $rem-baseline, $separator);
-    } @else if
-      type-of($value) ==
-      "number" and
-      unit($value) ==
-      "px" and
-      $to ==
-      "rem"
-    {
-      $result: append($result, $value / $rem-baseline * 1rem, $separator);
-    } @else if type-of($value) == "list" {
-      $value-separator: rem-separator($value);
-      $value: rem-convert($to, $value...);
-      $value: rem-separator($value, $value-separator);
-      $result: append($result, $value, $separator);
-    } @else {
-      $result: append($result, $value, $separator);
-    }
-  }
+	@each $value in $values {
+		@if type-of($value) == "number" and unit($value) == "rem" and $to == "px" {
+			$result: append($result, $value / 1rem * $rem-baseline, $separator);
+		} @else if
+			type-of($value) ==
+			"number" and
+			unit($value) ==
+			"px" and
+			$to ==
+			"rem"
+		{
+			$result: append($result, $value / $rem-baseline * 1rem, $separator);
+		} @else if type-of($value) == "list" {
+			$value-separator: rem-separator($value);
+			$value: rem-convert($to, $value...);
+			$value: rem-separator($value, $value-separator);
+			$result: append($result, $value, $separator);
+		} @else {
+			$result: append($result, $value, $separator);
+		}
+	}
 
-  @return if(length($result) == 1, nth($result, 1), $result);
+	@return if(length($result) == 1, nth($result, 1), $result);
 }
 
 @mixin rem($properties, $values...) {
-  @if type-of($properties) == "map" {
-    @each $property in map-keys($properties) {
-      @include rem($property, map-get($properties, $property));
-    }
-  } @else {
-    @each $property in $properties {
-      @if $rem-fallback or $rem-px-only {
-        #{$property}: rem-convert(px, $values...);
-      }
-      @if not $rem-px-only {
-        #{$property}: rem-convert(rem, $values...);
-      }
-    }
-  }
+	@if type-of($properties) == "map" {
+		@each $property in map-keys($properties) {
+			@include rem($property, map-get($properties, $property));
+		}
+	} @else {
+		@each $property in $properties {
+			@if $rem-fallback or $rem-px-only {
+				#{$property}: rem-convert(px, $values...);
+			}
+			@if not $rem-px-only {
+				#{$property}: rem-convert(rem, $values...);
+			}
+		}
+	}
 }

@@ -13,7 +13,8 @@
   <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="https://gmpg.org/xfn/11">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+    integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
   <?php wp_head(); ?>
 </head>
 
@@ -46,17 +47,17 @@
       <!--button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 				<?php esc_html_e( 'Primary Menu', 'portfolio-wordpress' ); ?>
       </button-->
-      
+
       <?php if (!is_single()) { ?>
-        <nav>
-          <?php wp_nav_menu( array( 
+      <nav class="menu-nav">
+        <?php wp_nav_menu( array( 
             'theme_location' 	=> 'header-menu',
             'container'				=>	'',
             'menu_class'		 	=>	'menu menu-1',
             'menu_id'        	=> 	'primary-menu',
             ) ); 
           ?>
-        </nav>
+      </nav>
       <?php } else { ?>
       <nav>
         <?php wp_nav_menu( array( 
@@ -67,7 +68,25 @@
           ) ); 
         ?>
       </nav>
-        <?php } ?>
+      <?php } ?>
+
+      <div class="hamburger hamburger--a js-hover">
+        <div class="hamburger__line hamburger__line--01">
+          <div class="hamburger__line-in hamburger__line-in--01"></div>
+        </div>
+        <div class="hamburger__line hamburger__line--02">
+          <div class="hamburger__line-in hamburger__line-in--02"></div>
+        </div>
+        <div class="hamburger__line hamburger__line--03">
+          <div class="hamburger__line-in hamburger__line-in--03"></div>
+        </div>
+        <div class="hamburger__line hamburger__line--cross01">
+          <div class="hamburger__line-in hamburger__line-in--cross01"></div>
+        </div>
+        <div class="hamburger__line hamburger__line--cross02">
+          <div class="hamburger__line-in hamburger__line-in--cross02"></div>
+        </div>
+      </div>
     </header>
 
     <div id="content" class="site-content">

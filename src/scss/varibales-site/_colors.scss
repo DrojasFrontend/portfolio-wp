@@ -8,6 +8,8 @@ $color__text-opacity: rgba(0, 0, 0, 0.2);
 $color__background-white: #fff;
 $color__background-black: #000;
 $color__background-gray: #f8faff;
+$color__background-blue: #5f30ff;
+$color__background-pink: #ed239f;
 $color__background-body: rgba(248, 248, 248, 0.07);
 $color__background-primary: linear-gradient(
     to right,
@@ -37,9 +39,15 @@ $color__background-shadow_hover: rgba(45, 45, 45, 0.05) 0px 2px 2px,
   rgba(32, 32, 32, 0.05) 0px 16px 16px, rgba(49, 49, 49, 0.05) 0px 32px 32px,
   rgba(35, 35, 35, 0.05) 0px 64px 64px;
 
+$color__border-line-white: #fff;
+$color__border-line-black: #000;
 $color__border-text: #f0e9ff;
 $color__border-input: #f0e9ff;
 $color__border-hr: #f0e9ff;
+$color__border-blue: #5f30ff;
+$color__border-pink: #ed239f;
+
+
 /*$color__background-screen: #f1f1f1;
 $color__background-button: #e6e6e6;
 $color__background-pre: #eee;
